@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Game Asesmen Digital — Pertemuan 5 & 6</title>
+<style>
+:root{--bg:#0b1020;--panel:#121a30;--panel2:#182440;--line:#2c3b60;--text:#edf3ff;--muted:#a9b7d4;--cyan:#63e6e2;--purple:#a78bfa;--green:#86efac;--red:#fda4af}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:radial-gradient(circle at 15% 0%,#1d2b55 0,transparent 38%),var(--bg);color:var(--text);min-height:100vh;padding:22px}
+.wrap{max-width:900px;margin:auto}.brand{display:flex;align-items:center;gap:12px;margin-bottom:22px}.logo{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--cyan),var(--purple));color:#10152a;font-weight:900;font-size:22px}.brand small{color:var(--muted)}h1{font-size:clamp(25px,4vw,38px);line-height:1.1;margin:8px 0 12px}h2{margin:0 0 12px;font-size:22px}.lead{color:var(--muted);line-height:1.65}.panel{background:linear-gradient(145deg,rgba(24,36,64,.97),rgba(18,26,48,.97));border:1px solid var(--line);border-radius:22px;padding:clamp(18px,4vw,30px);box-shadow:0 18px 55px #0003;margin-bottom:18px}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}.chip{font-size:12px;border:1px solid #3b4b73;background:#182644;color:#dce7ff;border-radius:999px;padding:7px 11px}.field{display:block;font-weight:700;margin:20px 0 8px}input[type=text]{width:100%;padding:14px 15px;border-radius:12px;border:1px solid #435477;background:#0d1529;color:var(--text);font-size:16px;outline:none}input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px #63e6e222}.btn{border:0;border-radius:12px;padding:13px 18px;font-weight:800;font-size:15px;cursor:pointer;transition:.15s}.btn:disabled{opacity:.45;cursor:not-allowed}.primary{background:linear-gradient(100deg,var(--cyan),#9bf5c5);color:#071326}.secondary{background:#243455;color:var(--text);border:1px solid #405174}.btn:hover:not(:disabled){transform:translateY(-1px)}.row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.progress{height:9px;background:#0b1225;border-radius:99px;overflow:hidden;margin:14px 0 20px;border:1px solid #263654}.bar{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--purple));transition:width .25s}.qnum{color:var(--cyan);font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.question{font-size:clamp(19px,3vw,24px);line-height:1.45;margin:12px 0 22px}.options{display:grid;gap:10px}.option{display:flex;align-items:flex-start;gap:12px;padding:14px;border:1px solid #344565;border-radius:14px;background:#101a31;cursor:pointer;line-height:1.45}.option:hover{border-color:#8295c2;background:#172441}.option.selected{border-color:var(--cyan);background:#12313d;box-shadow:0 0 0 1px var(--cyan) inset}.option input{margin-top:4px;accent-color:#63e6e2}.nav{display:flex;justify-content:space-between;gap:10px;margin-top:24px}.muted{color:var(--muted);font-size:13px;line-height:1.6}.hide{display:none!important}.score{font-size:clamp(46px,10vw,76px);font-weight:900;letter-spacing:-.05em;color:var(--cyan);line-height:1}.summarygrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}.stat{padding:14px;border:1px solid var(--line);border-radius:14px;background:#101a30}.stat b{display:block;font-size:24px;margin-bottom:4px}.review{border:1px solid var(--line);border-radius:14px;padding:15px;margin:12px 0;background:#101a30}.review h3{font-size:16px;margin:0 0 8px;line-height:1.5}.correct{color:var(--green)}.wrong{color:var(--red)}.status{margin-top:14px;padding:12px;border-radius:12px;background:#111d32;border:1px solid var(--line);font-size:14px;line-height:1.55}.footer{text-align:center;color:#8392b2;font-size:12px;padding:8px}.pillgood{color:var(--green)}@media(max-width:560px){body{padding:12px}.summarygrid{grid-template-columns:1fr}.nav .btn{flex:1}.panel{border-radius:17px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand"><div class="logo">5·6</div><div><b>MISSION: SOLUSI DIGITAL</b><br><small>Game asesmen • Pertemuan 5 & 6 • SMK XII RPL</small></div></div>
+  <section id="intro" class="panel">
+    <div class="chips"><span class="chip">15 soal acak</span><span class="chip">Skor maksimal 100</span><span class="chip">Pembahasan di akhir</span><span class="chip">Simpan ke Google Sheets</span></div>
+    <h1>Uji kemampuanmu membangun solusi digital.</h1>
+    <p class="lead">Tantang pemahaman tentang mengubah masalah menjadi solusi, menyusun algoritma, merancang aplikasi sederhana, menguji program, dan menjaga kualitas aplikasi.</p>
+    <label class="field" for="studentName">Nama lengkap siswa</label>
+    <input id="studentName" type="text" maxlength="100" autocomplete="name" placeholder="Ketik nama lengkap..." />
+    <p class="muted">Petunjuk: pilih satu jawaban paling tepat untuk setiap soal. Soal dan pilihan jawaban diacak saat permainan dimulai. Nilai dan pembahasan tampil setelah semua soal dijawab.</p>
+    <button class="btn primary" id="startBtn">Mulai Misi →</button>
+    <p class="muted">Catatan: guru perlu memasang URL Web App Apps Script pada variabel <code>APPS_SCRIPT_URL</code> di dalam file ini sebelum dipublikasikan.</p>
+  </section>
+
+  <section id="game" class="panel hide">
+    <div class="row"><span class="qnum" id="qLabel">SOAL 1 DARI 15</span><span class="muted" id="answeredLabel">0/15 terjawab</span></div>
+    <div class="progress"><div class="bar" id="progressBar"></div></div>
+    <h2 id="topicLabel">Analisis masalah</h2>
+    <div class="question" id="questionText"></div>
+    <div class="options" id="options"></div>
+    <div class="nav"><button class="btn secondary" id="prevBtn">← Kembali</button><button class="btn primary" id="nextBtn">Berikutnya →</button></div>
+    <p class="muted">Jawaban tersimpan sementara di halaman ini. Kamu dapat kembali untuk mengubah jawaban sebelum mengirim hasil.</p>
+  </section>
+
+  <section id="result" class="panel hide">
+    <span class="qnum">MISI SELESAI</span>
+    <h1>Hasil asesmenmu</h1>
+    <div class="score" id="scoreText">0</div><p class="lead">dari 100 poin</p>
+    <div class="summarygrid">
+      <div class="stat"><b id="correctStat">0</b><span class="muted">Jawaban benar</span></div>
+      <div class="stat"><b id="wrongStat">0</b><span class="muted">Jawaban salah</span></div>
+      <div class="stat"><b id="percentStat">0%</b><span class="muted">Ketuntasan</span></div>
+    </div>
+    <p class="lead" id="feedbackText"></p>
+    <div id="saveStatus" class="status">Menyiapkan pengiriman hasil...</div>
+    <div class="row" style="margin-top:18px"><button class="btn secondary" id="retrySaveBtn">Kirim ulang hasil</button><button class="btn primary" id="restartBtn">Main lagi ↻</button></div>
+    <h2 style="margin-top:30px">Rangkuman dan pembahasan</h2>
+    <p class="muted">Pelajari penjelasan berikut untuk mengetahui alasan setiap jawaban.</p>
+    <div id="reviewList"></div>
+  </section>
+  <div class="footer">MISSION: SOLUSI DIGITAL • Pertemuan 5 & 6 • Hasil dikirim ke Google Sheets melalui Apps Script</div>
+</div>
+<script>
+/* WAJIB: ganti dengan URL Web App Apps Script yang berakhiran /exec */
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwtGalw0gPnI6hID1IUz5j998hu5kdkbipcMbbIuKcR_iigNCWvSqaddH47HOXKqntx_g/exec";
+
+const questionBank = [
+ {topic:"Pertemuan 5 • Analisis masalah",q:"Siswa sering lupa tenggat pengumpulan tugas. Apa langkah terbaik sebelum mulai membuat aplikasi pengingat?",opts:["Langsung memilih warna dan ikon aplikasi","Mengidentifikasi pengguna, masalah utama, dan kebutuhan mereka","Menulis kode sebanyak mungkin","Menambahkan semua fitur yang terpikir"],a:1,why:"Analisis dimulai dengan memahami masalah, pengguna, dan kebutuhan. Dengan begitu solusi yang dibuat benar-benar membantu."},
+ {topic:"Pertemuan 5 • Input–Proses–Output",q:"Pada aplikasi penghitung nilai, pengguna memasukkan nilai tugas dan ujian, lalu aplikasi menghitung rata-rata. Bagian 'menghitung rata-rata' adalah…",opts:["Input","Output","Proses","Penyimpanan"],a:2,why:"Proses adalah langkah yang mengolah data masukan untuk menghasilkan keluaran."},
+ {topic:"Pertemuan 5 • Algoritma",q:"Urutan algoritma yang paling masuk akal untuk aplikasi daftar tugas adalah…",opts:["Tampilkan hasil → minta data → validasi","Terima data tugas → periksa data → simpan → tampilkan daftar","Simpan data kosong → tutup aplikasi → minta data","Buka aplikasi → hapus semua data → selesai"],a:1,why:"Algoritma perlu memiliki urutan yang logis: menerima masukan, memeriksa, menyimpan, lalu menampilkan hasil."},
+ {topic:"Pertemuan 5 • Flowchart",q:"Simbol belah ketupat pada flowchart biasanya digunakan untuk menunjukkan…",opts:["Awal atau akhir","Proses/perhitungan","Keputusan atau kondisi","Dokumen cetak"],a:2,why:"Belah ketupat menandai percabangan berdasarkan kondisi, misalnya apakah data sudah lengkap."},
+ {topic:"Pertemuan 5 • Kondisi",q:"Aplikasi memeriksa: jika kolom nama kosong, tampilkan pesan kesalahan; jika terisi, lanjutkan. Struktur yang sesuai adalah…",opts:["Percabangan if/else","Perulangan tanpa henti","Komentar kode","Deklarasi warna"],a:0,why:"if/else menjalankan tindakan berbeda sesuai hasil pemeriksaan kondisi."},
+ {topic:"Pertemuan 5 • Pengujian",q:"Apa tujuan utama menguji aplikasi dengan beberapa contoh masukan?",opts:["Agar tampilan selalu memiliki animasi","Memastikan aplikasi memberi hasil yang diharapkan pada berbagai kondisi","Menghilangkan kebutuhan dokumentasi","Membuat kode lebih panjang"],a:1,why:"Pengujian membantu memeriksa apakah fitur bekerja sesuai kebutuhan, termasuk pada masukan yang tidak biasa."},
+ {topic:"Pertemuan 5 • Debugging",q:"Saat aplikasi menghasilkan nilai yang salah, tindakan debugging yang tepat adalah…",opts:["Menghapus seluruh proyek tanpa memeriksa","Mengubah banyak bagian secara acak","Menelusuri langkah yang bermasalah, memperbaiki, lalu menguji ulang","Mengabaikan hasil yang salah"],a:2,why:"Debugging dilakukan secara sistematis: reproduksi masalah, telusuri penyebab, perbaiki, dan uji kembali."},
+ {topic:"Pertemuan 5 • AI dan etika",q:"AI coding assistant memberi saran kode. Sikap pengembang yang tepat adalah…",opts:["Menyalin semua kode tanpa membaca","Memeriksa, menguji, dan memahami kode sebelum digunakan","Membagikan kata sandi agar AI lebih paham","Menganggap AI tidak pernah salah"],a:1,why:"AI dapat membantu, tetapi hasilnya bisa keliru atau tidak aman. Pengembang tetap bertanggung jawab memverifikasi kode."},
+ {topic:"Pertemuan 6 • Kebutuhan aplikasi",q:"Kamu membuat aplikasi tugas sekolah dengan waktu terbatas. Versi awal sebaiknya memprioritaskan…",opts:["Semua fitur lanjutan sekaligus","Fitur inti: menambah tugas, melihat daftar, dan menandai selesai","Animasi kompleks sebelum fungsi utama","Fitur obrolan dan media sosial yang tidak diperlukan"],a:1,why:"MVP (Minimum Viable Product) adalah versi awal dengan fitur inti yang cukup untuk menguji manfaat solusi."},
+ {topic:"Pertemuan 6 • User flow",q:"User flow atau alur pengguna berguna untuk…",opts:["Menentukan urutan langkah pengguna saat memakai aplikasi","Mengganti seluruh pengujian program","Menentukan ukuran file gambar saja","Menyembunyikan kesalahan program"],a:0,why:"User flow menggambarkan perjalanan pengguna, misalnya buka aplikasi → tambah tugas → simpan → lihat daftar."},
+ {topic:"Pertemuan 6 • Struktur aplikasi",q:"Mengapa aplikasi sederhana sebaiknya memisahkan tampilan, logika, dan pengelolaan data jika memungkinkan?",opts:["Agar setiap bagian lebih mudah dipahami, diuji, dan diperbaiki","Agar kode tidak bisa dibaca siapa pun","Supaya aplikasi pasti bebas bug","Agar tidak perlu membuat fungsi"],a:0,why:"Pemisahan tanggung jawab membuat kode lebih teratur dan memudahkan perawatan serta pengujian."},
+ {topic:"Pertemuan 6 • Struktur data",q:"Aplikasi daftar tugas perlu menyimpan banyak tugas, masing-masing berisi judul dan status selesai. Pilihan struktur yang masuk akal adalah…",opts:["Satu angka yang ditimpa terus","Daftar berisi data setiap tugas","Warna latar halaman","Satu komentar di kode"],a:1,why:"Daftar (list/array) dapat menampung banyak item. Setiap item dapat menyimpan beberapa atribut seperti judul dan status."},
+ {topic:"Pertemuan 6 • Fungsi",q:"Apa manfaat membuat fungsi bernama validasiNama() untuk memeriksa nama pengguna?",opts:["Pemeriksaan bisa digunakan kembali dan memiliki tugas yang jelas","Aplikasi otomatis tersimpan ke semua perangkat","Semua kesalahan pasti hilang","Fungsi menggantikan kebutuhan masukan"],a:0,why:"Fungsi mengelompokkan tugas tertentu agar kode dapat digunakan ulang, dibaca, dan diuji lebih mudah."},
+ {topic:"Pertemuan 6 • Validasi",q:"Pengguna diminta memasukkan jumlah barang. Pemeriksaan paling tepat sebelum menghitung adalah…",opts:["Menerima semua teks tanpa pemeriksaan","Memastikan nilai berupa angka dan sesuai aturan yang dibutuhkan","Mengubah semua masukan menjadi nama pengguna","Mengabaikan kolom kosong"],a:1,why:"Validasi memeriksa jenis dan kelayakan masukan agar aplikasi mengurangi kesalahan serta hasil tidak masuk akal."},
+ {topic:"Pertemuan 6 • Keamanan dan kualitas",q:"Aplikasi menyimpan data pengguna. Praktik yang paling bertanggung jawab adalah…",opts:["Meminta kata sandi yang tidak dibutuhkan","Mengumpulkan semua data pribadi sebanyak mungkin","Mengumpulkan data seperlunya dan membatasi aksesnya","Menampilkan data setiap pengguna ke publik"],a:2,why:"Prinsip minimisasi data berarti hanya mengumpulkan data yang diperlukan dan melindunginya dari akses yang tidak semestinya."}
+];
+
+let student="", questions=[], answers={}, index=0, finalPayload=null;
+const $=id=>document.getElementById(id);
+function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function buildQuestions(){
+ questions=shuffle(questionBank).map(item=>{
+   const order=shuffle(item.opts.map((text,i)=>({text,original:i})));
+   return {...item,opts:order.map(x=>x.text),a:order.findIndex(x=>x.original===item.a)};
+ });
+ answers={};index=0;
+}
+function show(id){["intro","game","result"].forEach(x=>$(x).classList.toggle("hide",x!==id));}
+$("startBtn").addEventListener("click",()=>{
+ const name=$("studentName").value.trim();
+ if(!name){alert("Masukkan nama lengkap terlebih dahulu.");$("studentName").focus();return;}
+ student=name;buildQuestions();show("game");renderQuestion();
+});
+function renderQuestion(){
+ const q=questions[index];
+ $("qLabel").textContent=`SOAL ${index+1} DARI ${questions.length}`;
+ $("answeredLabel").textContent=`${Object.keys(answers).length}/${questions.length} terjawab`;
+ $("progressBar").style.width=`${(Object.keys(answers).length/questions.length)*100}%`;
+ $("topicLabel").textContent=q.topic;$("questionText").textContent=q.q;
+ $("options").innerHTML="";
+ q.opts.forEach((opt,i)=>{
+  const label=document.createElement("label");label.className="option"+(answers[index]===i?" selected":"");
+  const radio=document.createElement("input");radio.type="radio";radio.name="answer";radio.checked=answers[index]===i;
+  radio.addEventListener("change",()=>{answers[index]=i;renderQuestion();});
+  const span=document.createElement("span");span.textContent=opt;label.append(radio,span);$("options").append(label);
+ });
+ $("prevBtn").disabled=index===0;
+ $("nextBtn").textContent=index===questions.length-1?"Selesaikan & lihat hasil ✓":"Berikutnya →";
+}
+$("prevBtn").addEventListener("click",()=>{if(index>0){index--;renderQuestion();}});
+$("nextBtn").addEventListener("click",()=>{
+ if(answers[index]===undefined){alert("Pilih satu jawaban sebelum melanjutkan.");return;}
+ if(index<questions.length-1){index++;renderQuestion();return;}
+ if(Object.keys(answers).length!==questions.length){alert("Pastikan semua soal sudah dijawab.");return;}
+ finishGame();
+});
+function finishGame(){
+ let correct=0;const details=[];
+ questions.forEach((q,i)=>{const ok=answers[i]===q.a;if(ok)correct++;details.push({nomor:i+1,topik:q.topic,soal:q.q,jawabanSiswa:q.opts[answers[i]],jawabanBenar:q.opts[q.a],benar:ok,penjelasan:q.why});});
+ const score=Math.round(correct/questions.length*100);
+ finalPayload={nama:student,skor:score,benar:correct,salah:questions.length-correct,total:questions.length,pertemuan:"5 dan 6",rincian:details,waktuSelesai:new Date().toISOString(),userAgent:navigator.userAgent};
+ $("scoreText").textContent=score;$("correctStat").textContent=correct;$("wrongStat").textContent=questions.length-correct;$("percentStat").textContent=Math.round(correct/questions.length*100)+"%";
+ $("feedbackText").textContent=score>=85?"Hebat! Pemahamanmu sudah sangat baik. Pertahankan dengan terus membuat dan menguji proyek.":score>=70?"Bagus! Kamu sudah memahami banyak konsep. Pelajari kembali pembahasan untuk memperkuat bagian yang belum tepat.":"Terus berlatih! Baca pembahasan setiap soal, lalu coba terapkan langkahnya pada proyek aplikasi sederhana.";
+ $("reviewList").innerHTML="";
+ details.forEach(d=>{const div=document.createElement("div");div.className="review";const h=document.createElement("h3");h.textContent=`${d.nomor}. ${d.soal}`;const p1=document.createElement("p");p1.className=d.benar?"correct":"wrong";p1.textContent=(d.benar?"✓ Benar — ":"✗ Belum tepat — ")+"Jawabanmu: "+d.jawabanSiswa;const p2=document.createElement("p");p2.textContent="Kunci: "+d.jawabanBenar;const p3=document.createElement("p");p3.className="muted";p3.textContent=d.penjelasan;div.append(h,p1,p2,p3);$("reviewList").append(div);});
+ show("result");sendResult();
+}
+async function sendResult(){
+ const status=$("saveStatus"), retry=$("retrySaveBtn");
+ if(!finalPayload){status.textContent="Belum ada hasil untuk dikirim.";return;}
+ if(!APPS_SCRIPT_URL.startsWith("https://script.google.com/macros/s/")||!APPS_SCRIPT_URL.endsWith("/exec")){
+  status.textContent="URL Apps Script belum dipasang. Hasil tampil di halaman, tetapi belum dikirim. Guru perlu mengisi APPS_SCRIPT_URL dengan URL Web App yang berakhiran /exec.";
+  retry.disabled=false;return;
+ }
+ status.textContent="Mengirim hasil ke Google Sheets…";retry.disabled=true;
+ try{
+  await fetch(APPS_SCRIPT_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(finalPayload)});
+  status.innerHTML='<span class="pillgood">Permintaan pengiriman telah dikirim.</span> Karena browser membatasi pembacaan respons Apps Script dari GitHub Pages, periksa Google Sheets untuk memastikan baris baru benar-benar masuk. Jika belum ada, periksa URL dan deployment lalu klik “Kirim ulang hasil”.';
+ }catch(err){
+  status.textContent="Pengiriman gagal dimulai: "+err.message+". Periksa koneksi internet, URL Web App, dan deployment Apps Script, lalu coba kirim ulang.";
+ }finally{retry.disabled=false;}
+}
+$("retrySaveBtn").addEventListener("click",sendResult);
+$("restartBtn").addEventListener("click",()=>{student=$("studentName").value.trim();buildQuestions();show("game");renderQuestion();});
+</script>
+</body>
+</html>
